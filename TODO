@@ -1,0 +1,7 @@
+implement logger functions with undefined number of arguments and replace printfs
+multithreading_posix.c depends on glibs non-standart POSIX function pthread_tryjoin_np. It would be great to break this dependency
+thread_get_exit_code function in multithreading_posix.c and multithreading_windows.c has different behavior. POSIX implementation can be called once for the same thread, if we call this func twice for example, it will return THREAD_STILL_ACTIVE for the second call, because after successed pthread_join/pthread_tryjoin_np call pthread_tryjoin_np will return EBUSY even if thread is terminated. Maybe this behavior is caused by undefined behaviour, but i'm not sure about that. On Windows we use function GetExitCodeThread. This function can be called several times, this implies from official documentation. So this causes different behavior on a second call on different platforms.
+Move function descriptions to header files
+
+get a port automatically from system and open it for listening via "uPnP"
+Покачто можно просто просить айпи и порт через stdin или аргументы
